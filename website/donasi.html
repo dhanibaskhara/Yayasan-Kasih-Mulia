@@ -38,109 +38,54 @@
       <!-- Mode Switcher: Donasi Online vs Donasi Barang & CSR -->
       <div class="flex justify-center mb-8">
         <div class="inline-flex bg-white border border-[#D8E2E2] p-1 rounded-2xl">
-          <button type="button" id="tab-online" class="px-5 py-2.5 rounded-xl text-sm font-semibold bg-[#0F5C5E] text-white">Donasi Online Cepat</button>
+          <button type="button" id="tab-online" class="px-5 py-2.5 rounded-xl text-sm font-semibold bg-[#0F5C5E] text-white">Transfer Bank</button>
           <button type="button" id="tab-csr" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-[#475569]">Donasi Barang &amp; CSR</button>
         </div>
       </div>
 
-      <!-- Panel 1: Formulir Donasi Online Mobile-First -->
+      <!-- Panel 1: Transfer bank manual -->
       <div id="panel-online" class="grid lg:grid-cols-12 gap-8 items-start">
-        <form id="donation-form" class="lg:col-span-7 bg-white rounded-3xl border border-[#D8E2E2] p-6 sm:p-8 shadow-sm space-y-6">
-          <!-- Frekuensi -->
+        <section class="lg:col-span-7 bg-white rounded-3xl border border-[#D8E2E2] p-6 sm:p-8 shadow-sm space-y-6">
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-2.5">1. Pilih Frekuensi Donasi</label>
-            <div class="grid grid-cols-2 gap-2.5">
-              <button type="button" data-freq="once" class="freq-btn py-3 px-4 rounded-xl border-2 border-[#0F5C5E] bg-[#EDF6F6] text-[#0A3D3F] font-semibold text-sm">
-                Donasi Sekali
-              </button>
-              <button type="button" data-freq="monthly" class="freq-btn py-3 px-4 rounded-xl border border-[#D8E2E2] bg-white text-[#475569] font-semibold text-sm">
-                Bulanan &bull; Sahabat Pemulihan
-              </button>
-            </div>
+            <span class="inline-flex px-3 py-1 rounded-full bg-[#F8EEE9] text-[#98472F] text-xs font-bold mb-3">Cara donasi saat ini</span>
+            <h2 class="font-heading font-bold text-2xl text-[#0A3D3F] mb-2">Salurkan donasi melalui transfer bank</h2>
+            <p class="text-sm text-[#64736D]">Pembayaran QRIS dan Virtual Account otomatis belum tersedia. Untuk saat ini, donasi dapat disalurkan melalui rekening resmi yayasan berikut.</p>
           </div>
-
-          <!-- Nominal Preset -->
-          <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-2.5">2. Pilih Nominal Donasi</label>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-3">
-              <button type="button" data-amount="100000" class="amt-btn py-3 rounded-xl border border-[#D8E2E2] font-semibold text-sm text-[#1E293B]">Rp 100.000</button>
-              <button type="button" data-amount="250000" class="amt-btn py-3 rounded-xl border-2 border-[#B84A24] bg-[#FDF2EE] font-semibold text-sm text-[#963A1A]">Rp 250.000</button>
-              <button type="button" data-amount="500000" class="amt-btn py-3 rounded-xl border border-[#D8E2E2] font-semibold text-sm text-[#1E293B]">Rp 500.000</button>
-              <button type="button" data-amount="1000000" class="amt-btn py-3 rounded-xl border border-[#D8E2E2] font-semibold text-sm text-[#1E293B]">Rp 1.000.000</button>
+          <div class="rounded-2xl bg-[#EAF3EF] border border-[#D7E5DC] p-5 sm:p-6">
+            <p class="text-xs font-bold uppercase tracking-wider text-[#17665D] mb-2">Rekening resmi Yayasan Kasih Mulia</p>
+            <p class="text-sm font-semibold text-[#24332F]">Bank BCA</p>
+            <div class="flex flex-wrap items-center gap-3 mt-1">
+              <p class="font-heading font-bold text-2xl sm:text-3xl tracking-wide text-[#123E39]">3093004503</p>
+              <button type="button" id="copy-account" class="btn-outline-teal px-3 py-2 text-xs">Salin nomor</button>
             </div>
-            <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-[#475569]">Rp</span>
-              <input id="custom-amount" type="number" min="10000" step="1000" value="250000" aria-label="Nominal donasi bebas" class="w-full pl-11 pr-4 py-3 rounded-xl border border-[#D8E2E2] text-[#1E293B] font-semibold text-base" />
-            </div>
-            <p id="impact-text" class="mt-2.5 text-xs sm:text-sm text-[#0F5C5E] bg-[#EDF6F6] px-3.5 py-2.5 rounded-xl">
-              Membantu subsidi layanan konseling keluarga, kebutuhan harian pemulihan, serta program edukasi pencegahan adiksi.
-            </p>
+            <p class="text-sm text-[#53645D] mt-1">a/n Yayasan Kasih Mulia</p>
+            <p id="copy-status" class="text-xs text-[#17665D] mt-2" role="status" aria-live="polite"></p>
           </div>
-
-          <!-- Smart Payment Routing -->
-          <div>
-            <div class="flex items-center justify-between mb-2.5">
-              <label class="block text-xs font-bold uppercase tracking-wider text-[#475569]">3. Metode Pembayaran (Rute Paling Hemat)</label>
-              <span id="routing-badge" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#EDF6F6] text-[#0F5C5E]">Optimal: QRIS</span>
-            </div>
-            <div class="grid sm:grid-cols-3 gap-2.5">
-              <label class="pay-card cursor-pointer border-2 border-[#0F5C5E] bg-[#EDF6F6] rounded-xl p-3.5 block" data-method="qris">
-                <input type="radio" name="payment_method" value="qris" checked class="sr-only" />
-                <span class="block font-semibold text-sm text-[#0A3D3F]">QRIS Instan</span>
-                <span id="qris-fee-note" class="block text-xs text-[#475569] mt-0.5">Biaya 0,7%</span>
-              </label>
-              <label class="pay-card cursor-pointer border border-[#D8E2E2] bg-white rounded-xl p-3.5 block" data-method="va">
-                <input type="radio" name="payment_method" value="va" class="sr-only" />
-                <span class="block font-semibold text-sm text-[#0A3D3F]">Virtual Account</span>
-                <span class="block text-xs text-[#475569] mt-0.5">BCA / Mandiri / BNI / BRI</span>
-              </label>
-              <label class="pay-card cursor-pointer border border-[#D8E2E2] bg-white rounded-xl p-3.5 block" data-method="ewallet">
-                <input type="radio" name="payment_method" value="ewallet" class="sr-only" />
-                <span class="block font-semibold text-sm text-[#0A3D3F]">E-Wallet</span>
-                <span class="block text-xs text-[#475569] mt-0.5">OVO / DANA / GoPay</span>
-              </label>
-            </div>
-            <p id="fee-summary" class="text-xs text-[#475569] mt-2"></p>
+          <div class="space-y-3">
+            <h3 class="font-heading font-semibold text-lg text-[#123E39]">Setelah melakukan transfer</h3>
+            <ol class="list-decimal pl-5 space-y-2 text-sm text-[#64736D]">
+              <li>Simpan bukti transfer dari aplikasi bank Anda.</li>
+              <li>Kirim bukti transfer melalui WhatsApp resmi yayasan.</li>
+              <li>Sertakan nama pengirim dan nominal agar tim dapat membantu proses konfirmasi.</li>
+            </ol>
+            <a href="https://wa.me/628111632752?text=Halo%20Yayasan%20Kasih%20Mulia%2C%20saya%20ingin%20mengonfirmasi%20donasi%20melalui%20transfer%20bank." target="_blank" rel="noopener noreferrer" class="btn-teal w-full py-4 rounded-xl font-semibold text-center">Konfirmasi Donasi via WhatsApp</a>
           </div>
+        </section>
 
-          <!-- Data Minimalis (Tanpa Profil Panjang) -->
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="donor-name" class="block text-sm font-medium text-[#1E293B] mb-1">Nama Lengkap / Inisial</label>
-              <input id="donor-name" type="text" required placeholder="Contoh: Budi S. atau Hamba Tuhan" class="w-full px-4 py-3 rounded-xl border border-[#D8E2E2] text-sm" />
-            </div>
-            <div>
-              <label for="donor-email" class="block text-sm font-medium text-[#1E293B] mb-1">Email (Untuk Kuitansi Resmi)</label>
-              <input id="donor-email" type="email" required placeholder="nama@email.com" class="w-full px-4 py-3 rounded-xl border border-[#D8E2E2] text-sm" />
-            </div>
-          </div>
-
-          <button type="submit" class="btn-primary-cta w-full py-4 rounded-xl font-semibold text-base shadow-sm">
-            Lanjutkan Pembayaran Donasi
-          </button>
-
-          <p class="text-xs text-center text-[#475569]">
-            Transaksi terenkripsi SSL &amp; diproses melalui mitra payment gateway berstandar PCI-DSS. Data Anda tidak akan pernah dijual atau dibagikan.
-          </p>
-        </form>
-
-        <!-- Ringkasan & Bukti Kepercayaan -->
         <aside class="lg:col-span-5 space-y-5">
-          <div id="thankyou-box" hidden class="bg-[#EDF6F6] border-2 border-[#1B6E4B] rounded-3xl p-6">
-            <p class="text-xs font-bold uppercase text-[#1B6E4B] mb-1">Simulasi Transaksi Berhasil</p>
-            <h2 class="font-heading font-bold text-xl text-[#0A3D3F] mb-2">Terima Kasih atas Kepedulian Anda!</h2>
-            <p id="thankyou-detail" class="text-sm text-[#1E293B] mb-3"></p>
-            <p class="text-xs text-[#475569]">Pada versi produksi (Midtrans Snap / DonasiWP), tombol di sebelah kiri akan langsung menampilkan kode QRIS / nomor Virtual Account dan mengirim kuitansi resmi ke email Anda secara otomatis.</p>
-          </div>
-
           <div class="bg-white rounded-3xl border border-[#D8E2E2] p-6 space-y-4">
-            <h2 class="font-heading font-bold text-lg text-[#0A3D3F]">Mengapa Donasi Anda Aman &amp; Berdampak?</h2>
-            <ul class="text-sm text-[#475569] space-y-2.5">
-              <li><strong class="text-[#0A3D3F]">Rekam Jejak 28 Tahun:</strong> Melayani pemulihan adiksi dan keluarga sejak 1998.</li>
-              <li><strong class="text-[#0A3D3F]">Efisiensi Biaya Transaksi:</strong> Sistem otomatis memilihkan QRIS 0% untuk nominal ≤ Rp 100.000 dan Virtual Account untuk nominal ≥ Rp 1.000.000.</li>
-              <li><strong class="text-[#0A3D3F]">Kuitansi &amp; Kabar Dampak:</strong> Bukti transaksi instan dan pembaruan berkala tanpa pesan mengganggu.</li>
+            <h2 class="font-heading font-bold text-lg text-[#123E39]">Informasi sebelum berdonasi</h2>
+            <ul class="text-sm text-[#64736D] space-y-3">
+              <li><strong class="text-[#123E39]">Pastikan nama penerima:</strong> Yayasan Kasih Mulia.</li>
+              <li><strong class="text-[#123E39]">Simpan bukti transfer:</strong> bukti diperlukan untuk membantu pencocokan donasi.</li>
+              <li><strong class="text-[#123E39]">Butuh bantuan?</strong> Hubungi tim yayasan melalui WhatsApp atau telepon kantor.</li>
             </ul>
-            <a href="tentang.html#transparansi" class="inline-block text-sm font-semibold text-[#0F5C5E] underline">Lihat Halaman Transparansi &rarr;</a>
+            <a href="tentang.html#transparansi" class="inline-flex text-sm font-semibold text-[#17665D] underline">Lihat informasi transparansi &rarr;</a>
+          </div>
+          <div class="rounded-3xl bg-[#123E39] text-white p-6">
+            <p class="text-xs font-bold uppercase tracking-wider text-[#C8E0D4] mb-2">Dukungan Anda berarti</p>
+            <p class="font-heading text-xl text-white leading-snug">Setiap kontribusi membantu menjaga akses pendampingan dan pemulihan.</p>
+            <p class="text-sm text-[#E0ECE6] mt-3">Untuk donasi barang atau kerja sama perusahaan, pilih tab Donasi Barang &amp; CSR.</p>
           </div>
         </aside>
       </div>
@@ -171,136 +116,40 @@
   <script src="js/layout.js"></script>
   <script>
     (function () {
-      let frequency = 'once';
-      let amount = 250000;
-      let selectedMethod = 'qris';
-
-      const customInput = document.getElementById('custom-amount');
-      const routingBadge = document.getElementById('routing-badge');
-      const qrisFeeNote = document.getElementById('qris-fee-note');
-      const feeSummary = document.getElementById('fee-summary');
-
-      function fmtRp(n) {
-        return 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-      }
-
-      function applySmartRouting(val) {
-        const best = val >= 1000000 ? 'va' : 'qris';
-        selectedMethod = best;
-        if (val <= 100000) {
-          routingBadge.textContent = 'Optimal: QRIS (Biaya 0%)';
-          qrisFeeNote.textContent = 'Gratis 0% (≤ Rp 100 rb)';
-        } else if (val < 1000000) {
-          routingBadge.textContent = 'Optimal: QRIS (0,7%)';
-          qrisFeeNote.textContent = 'Biaya 0,7% (paling hemat)';
-        } else {
-          routingBadge.textContent = 'Optimal: Virtual Account';
-          qrisFeeNote.textContent = 'Biaya 0,7%';
-        }
-        highlightPaymentCard(selectedMethod);
-        updateFeeText();
-      }
-
-      function highlightPaymentCard(method) {
-        document.querySelectorAll('.pay-card').forEach((card) => {
-          const isMatch = card.getAttribute('data-method') === method;
-          const radio = card.querySelector('input[type="radio"]');
-          if (radio) radio.checked = isMatch;
-          card.className = isMatch
-            ? 'pay-card cursor-pointer border-2 border-[#0F5C5E] bg-[#EDF6F6] rounded-xl p-3.5 block'
-            : 'pay-card cursor-pointer border border-[#D8E2E2] bg-white rounded-xl p-3.5 block';
-        });
-      }
-
-      function updateFeeText() {
-        let fee = 0;
-        if (selectedMethod === 'qris') {
-          fee = amount <= 100000 ? 0 : Math.round(amount * 0.007);
-        } else if (selectedMethod === 'va') {
-          fee = 4440;
-        } else {
-          fee = Math.round(amount * 0.01665);
-        }
-        const net = Math.max(0, amount - fee);
-        feeSummary.textContent = `Estimasi biaya gateway: ${fmtRp(fee)} — Dana bersih diterima Yayasan Kasih Mulia: ${fmtRp(net)}.`;
-      }
-
-      // Frekuensi toggle
-      document.querySelectorAll('.freq-btn').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          frequency = btn.getAttribute('data-freq');
-          document.querySelectorAll('.freq-btn').forEach((b) => {
-            const active = b === btn;
-            b.className = active
-              ? 'freq-btn py-3 px-4 rounded-xl border-2 border-[#0F5C5E] bg-[#EDF6F6] text-[#0A3D3F] font-semibold text-sm'
-              : 'freq-btn py-3 px-4 rounded-xl border border-[#D8E2E2] bg-white text-[#475569] font-semibold text-sm';
-          });
-        });
-      });
-
-      // Preset buttons
-      document.querySelectorAll('.amt-btn').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          amount = parseInt(btn.getAttribute('data-amount'), 10);
-          customInput.value = amount;
-          document.querySelectorAll('.amt-btn').forEach((b) => {
-            const active = b === btn;
-            b.className = active
-              ? 'amt-btn py-3 rounded-xl border-2 border-[#B84A24] bg-[#FDF2EE] font-semibold text-sm text-[#963A1A]'
-              : 'amt-btn py-3 rounded-xl border border-[#D8E2E2] font-semibold text-sm text-[#1E293B]';
-          });
-          applySmartRouting(amount);
-        });
-      });
-
-      customInput.addEventListener('input', () => {
-        const parsed = parseInt(customInput.value, 10);
-        if (!isNaN(parsed) && parsed >= 10000) {
-          amount = parsed;
-          applySmartRouting(amount);
-        }
-      });
-
-      document.querySelectorAll('.pay-card').forEach((card) => {
-        card.addEventListener('click', () => {
-          selectedMethod = card.getAttribute('data-method');
-          highlightPaymentCard(selectedMethod);
-          updateFeeText();
-        });
-      });
-
-      // Mode Tabs (Online vs CSR)
-      const tabOnline = document.getElementById('tab-online');
+      const tabBank = document.getElementById('tab-online');
       const tabCsr = document.getElementById('tab-csr');
-      const panelOnline = document.getElementById('panel-online');
+      const panelBank = document.getElementById('panel-online');
       const panelCsr = document.getElementById('panel-csr');
 
-      tabOnline.addEventListener('click', () => {
-        panelOnline.removeAttribute('hidden');
-        panelCsr.setAttribute('hidden', '');
-        tabOnline.className = 'px-5 py-2.5 rounded-xl text-sm font-semibold bg-[#0F5C5E] text-white';
-        tabCsr.className = 'px-5 py-2.5 rounded-xl text-sm font-semibold text-[#475569]';
-      });
-      tabCsr.addEventListener('click', () => {
-        panelCsr.removeAttribute('hidden');
-        panelOnline.setAttribute('hidden', '');
-        tabCsr.className = 'px-5 py-2.5 rounded-xl text-sm font-semibold bg-[#0F5C5E] text-white';
-        tabOnline.className = 'px-5 py-2.5 rounded-xl text-sm font-semibold text-[#475569]';
-      });
+      function activateTab(showCsr) {
+        panelBank.hidden = showCsr;
+        panelCsr.hidden = !showCsr;
+        tabBank.className = showCsr
+          ? 'px-5 py-2.5 rounded-xl text-sm font-semibold text-[#475569]'
+          : 'px-5 py-2.5 rounded-xl text-sm font-semibold bg-[#17665D] text-white';
+        tabCsr.className = showCsr
+          ? 'px-5 py-2.5 rounded-xl text-sm font-semibold bg-[#17665D] text-white'
+          : 'px-5 py-2.5 rounded-xl text-sm font-semibold text-[#475569]';
+        tabBank.setAttribute('aria-selected', String(!showCsr));
+        tabCsr.setAttribute('aria-selected', String(showCsr));
+      }
 
-      // Submit simulasi
-      document.getElementById('donation-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('donor-name').value.trim();
-        const freqLabel = frequency === 'monthly' ? 'Donasi Bulanan (Sahabat Pemulihan)' : 'Donasi Sekali';
-        const methodLabel = selectedMethod === 'qris' ? 'QRIS' : selectedMethod === 'va' ? 'Virtual Account' : 'E-Wallet';
-        document.getElementById('thankyou-detail').textContent =
-          `${name}, permintaan ${freqLabel} sebesar ${fmtRp(amount)} via ${methodLabel} telah dicatat.`;
-        document.getElementById('thankyou-box').removeAttribute('hidden');
-        document.getElementById('thankyou-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      });
+      tabBank.addEventListener('click', function () { activateTab(false); });
+      tabCsr.addEventListener('click', function () { activateTab(true); });
 
-      applySmartRouting(amount);
+      const copyButton = document.getElementById('copy-account');
+      const copyStatus = document.getElementById('copy-status');
+      if (copyButton) {
+        copyButton.addEventListener('click', async function () {
+          try {
+            await navigator.clipboard.writeText('3093004503');
+            copyStatus.textContent = 'Nomor rekening berhasil disalin.';
+          } catch (error) {
+            copyStatus.textContent = 'Salin manual nomor rekening: 3093004503.';
+          }
+        });
+      }
+      activateTab(false);
     })();
   </script>
 </body>
