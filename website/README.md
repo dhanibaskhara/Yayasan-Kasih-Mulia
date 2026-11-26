@@ -16,8 +16,8 @@ Delapan halaman HTML yang diberikan untuk pengembangan website:
 Halaman menggunakan:
 - Tailwind CSS melalui CDN.
 - Google Fonts: Plus Jakarta Sans dan Poppins.
-- `css/style.css` (belum disertakan dalam unggahan ini).
-- `js/layout.js` (belum disertakan dalam unggahan ini, untuk header/footer bersama).
+- `css/style.css` — stylesheet bersama.
+- `js/layout.js` — render header/footer, navigasi mobile, dan accordion bersama.
 
 Agar halaman dapat berjalan konsisten saat dibuka sebagai satu situs, tambahkan file CSS dan JavaScript tersebut pada folder `website/css/` dan `website/js/`, atau sesuaikan referensi path di seluruh halaman.
 
