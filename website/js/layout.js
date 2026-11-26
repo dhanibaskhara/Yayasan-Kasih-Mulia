@@ -1,23 +1,25 @@
 (function () {
-  const segments = window.location.pathname.split('/').filter(Boolean);
-  let currentPage = segments[segments.length - 1] || 'index.html';
-  if (!currentPage.includes('.')) currentPage = 'index.html';
+  const pathname = window.location.pathname.replace(/\/+$/, '');
+  const currentPage = pathname.split('/').pop() || 'index.html';
 
   const navItems = [
-    { href: 'program.html', label: 'Program Rawatan' },
-    { href: 'keluarga.html', label: 'Untuk Keluarga' },
-    { href: 'edukasi.html', label: 'Pahami Adiksi' },
+    { href: 'program.html', label: 'Rawatan' },
+    { href: 'keluarga.html', label: 'Keluarga' },
+    { href: 'edukasi.html', label: 'Edukasi' },
     { href: 'pelatihan.html', label: 'Pelatihan' },
-    { href: 'tentang.html', label: 'Tentang Kami' },
+    { href: 'tentang.html', label: 'Tentang' },
     { href: 'galeri.html', label: 'Galeri' }
   ];
 
   const whatsappUrl = 'https://wa.me/628111632752?text=Halo%20Yayasan%20Kasih%20Mulia%2C%20saya%20ingin%20bertanya%20secara%20rahasia.';
 
+  function activeAttribute(href) {
+    return currentPage === href ? ' aria-current="page"' : '';
+  }
+
   function navLink(item) {
-    const active = currentPage === item.href;
     return '<a class="site-nav-link" href="' + item.href + '"' +
-      (active ? ' aria-current="page"' : '') + '>' + item.label + '</a>';
+      activeAttribute(item.href) + '>' + item.label + '</a>';
   }
 
   function renderHeader() {
@@ -26,14 +28,14 @@
 
     const desktopLinks = navItems.map(navLink).join('');
     const mobileLinks = [
-      '<a href="index.html"' + (currentPage === 'index.html' ? ' aria-current="page"' : '') + '>Beranda</a>',
+      '<a href="index.html"' + activeAttribute('index.html') + '>Beranda</a>',
       navItems.map(function (item) {
-        const active = currentPage === item.href;
-        return '<a href="' + item.href + '"' + (active ? ' aria-current="page"' : '') + '>' + item.label + '</a>';
+        return '<a href="' + item.href + '"' + activeAttribute(item.href) + '>' + item.label + '</a>';
       }).join('')
     ].join('');
 
     mount.innerHTML = [
+      '<a class="skip-link" href="#main-content">Lewati ke konten utama</a>',
       '<div class="site-topbar">',
         '<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-x-5 gap-y-1">',
           '<span>Ruang aman untuk memulai pemulihan — tanpa penghakiman.</span>',
@@ -55,11 +57,10 @@
             '</a>',
             '<nav class="site-nav-desktop" aria-label="Navigasi utama">' + desktopLinks + '</nav>',
             '<div class="site-header-actions">',
-              '<a href="konsultasi.html" class="site-action-secondary">Konsultasi</a>',
-              '<a href="donasi.html" class="site-action-primary">Dukung Pemulihan</a>',
+              '<a href="konsultasi.html">Konsultasi Rahasia</a>',
             '</div>',
             '<button id="mobile-menu-btn" class="site-mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Buka menu navigasi">',
-              '<svg id="menu-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
+              '<svg id="menu-icon" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
             '</button>',
           '</div>',
         '</div>',
@@ -97,10 +98,19 @@
         menuBtn.setAttribute('aria-expanded', 'true');
         menuBtn.setAttribute('aria-label', 'Tutup menu navigasi');
         if (menuIcon) menuIcon.innerHTML = '<path d="m6 6 12 12M18 6 6 18"/>';
+        const firstLink = mobileMenu.querySelector('nav a');
+        if (firstLink) firstLink.focus({ preventScroll: true });
       });
 
       mobileMenu.querySelectorAll('a').forEach(function (link) {
         link.addEventListener('click', function () { closeMenu(false); });
+      });
+
+      document.addEventListener('click', function (event) {
+        if (menuBtn.getAttribute('aria-expanded') === 'true' &&
+            !mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+          closeMenu(false);
+        }
       });
 
       document.addEventListener('keydown', function (event) {
