@@ -5,6 +5,7 @@
     { href: 'program.html', label: 'Program Rawatan' },
     { href: 'keluarga.html', label: 'Untuk Keluarga' },
     { href: 'pelatihan.html', label: 'Pelatihan & Edukasi' },
+    { href: 'galeri.html', label: 'Galeri Foto' },
     { href: 'edukasi.html', label: 'Pahami Adiksi' },
     { href: 'tentang.html', label: 'Tentang Kami' }
   ];
@@ -197,6 +198,7 @@
           <div class="border-t border-teal-800/80 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-teal-200">
             <p>&copy; 2026 Yayasan Kasih Mulia – Kedhaton Parahita. Seluruh hak cipta dilindungi.</p>
             <div class="flex flex-wrap items-center gap-5">
+              <a href="galeri.html" class="hover:text-white underline">Galeri Kegiatan</a>
               <a href="tentang.html#transparansi" class="hover:text-white underline">Transparansi &amp; Laporan</a>
               <a href="konsultasi.html#privasi" class="hover:text-white underline">Kebijakan Privasi (UU PDP)</a>
               <a href="donasi.html" class="hover:text-white underline">Dukung Pemulihan</a>
