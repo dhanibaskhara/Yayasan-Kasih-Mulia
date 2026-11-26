@@ -490,3 +490,9 @@ button:disabled, input:disabled, select:disabled, textarea:disabled {
 .mobile-whatsapp-fab.is-obscured { visibility:hidden; opacity:0; pointer-events:none; }
 @media (min-width:768px) { .mobile-whatsapp-fab { display:none; } }
 @media (max-width:767px) { #site-footer footer { padding-bottom:calc(5.5rem + env(safe-area-inset-bottom)); } .gallery-lightbox { padding:.65rem; border-radius:13px; } }
+
+
+/* Official Yayasan Kasih Mulia logo */
+#site-header .site-brand-logo { display:block; width: clamp(128px, 13vw, 180px); height: auto; max-height: 54px; object-fit: contain; object-position: left center; }
+#site-footer .site-footer-logo { display:block; width:176px; height:auto; max-height:62px; object-fit:contain; object-position:left center; padding:.2rem; border-radius:8px; background:#fff; }
+@media (max-width:767px) { #site-header .site-brand-logo { width:126px; max-height:46px; } }
