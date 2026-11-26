@@ -4,6 +4,7 @@
   if (!currentPage.includes('.')) currentPage = 'index.html';
 
   const navItems = [
+    { href: 'index.html', label: 'Beranda' },
     { href: 'program.html', label: 'Rawatan' },
     { href: 'adiksi.html', label: 'Apa Itu Adiksi?' },
     { href: 'keluarga.html', label: 'Keluarga' },
