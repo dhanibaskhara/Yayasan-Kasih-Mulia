@@ -1,11 +1,11 @@
 (function () {
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPage = window.location.pathname.split('/').filter(Boolean).pop() || 'index.html';
 
   const navItems = [
     { href: 'program.html', label: 'Program Rawatan' },
     { href: 'keluarga.html', label: 'Untuk Keluarga' },
     { href: 'pelatihan.html', label: 'Pelatihan & Edukasi' },
-    { href: 'galeri.html', label: 'Galeri' },
+    { href: 'index.html#galeri', label: 'Galeri' },
     { href: 'edukasi.html', label: 'Pahami Adiksi' },
     { href: 'tentang.html', label: 'Tentang Kami' }
   ];
@@ -16,7 +16,7 @@
 
     const desktopLinks = navItems
       .map((item) => {
-        const active = currentPage === item.href;
+        const active = currentPage === item.href || (item.href === 'index.html#galeri' && currentPage === 'index.html' && window.location.hash === '#galeri');
         return `<a href="${item.href}" class="px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
           active
             ? 'text-[#0F5C5E] bg-[#EDF6F6] font-semibold'
@@ -28,7 +28,7 @@
     const mobileLinks = navItems
       .map((item) => {
         const active = currentPage === item.href;
-        return `<a href="${item.href}" class="block px-4 py-3 rounded-xl text-base font-medium ${
+        return `<a href="${item.href}" ${active ? 'aria-current="page"' : ''} class="block px-4 py-3 rounded-xl text-base font-medium ${
           active
             ? 'bg-[#EDF6F6] text-[#0A3D3F] font-semibold'
             : 'text-[#1E293B] hover:bg-[#FAF9F6]'
@@ -79,7 +79,7 @@
             </nav>
 
             <!-- Desktop Priority CTAs -->
-            <div class="hidden md:flex items-center gap-2.5 shrink-0">
+            <div class="hidden lg:flex items-center gap-2.5 shrink-0">
               <a href="konsultasi.html" class="btn-outline-teal px-4 py-2.5 rounded-full text-sm font-semibold">
                 Konsultasi Rahasia
               </a>
@@ -120,6 +120,17 @@
         } else {
           mobileMenu.setAttribute('hidden', '');
           menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+        mobileMenu.setAttribute('hidden', '');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !mobileMenu.hasAttribute('hidden')) {
+          mobileMenu.setAttribute('hidden', '');
+          menuBtn.setAttribute('aria-expanded', 'false');
+          menuBtn.focus();
         }
       });
     }
