@@ -27,7 +27,7 @@
 
     const mobileLinks = navItems
       .map((item) => {
-        const active = currentPage === item.href;
+        const active = currentPage === item.href || (item.href === 'index.html#galeri' && currentPage === 'index.html' && window.location.hash === '#galeri');
         return `<a href="${item.href}" ${active ? 'aria-current="page"' : ''} class="block px-4 py-3 rounded-xl text-base font-medium ${
           active
             ? 'bg-[#EDF6F6] text-[#0A3D3F] font-semibold'
