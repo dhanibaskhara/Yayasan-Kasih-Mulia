@@ -5,6 +5,7 @@
 
   const navItems = [
     { href: 'program.html', label: 'Rawatan' },
+    { href: 'adiksi.html', label: 'Apa Itu Adiksi?' },
     { href: 'keluarga.html', label: 'Keluarga' },
     { href: 'edukasi.html', label: 'Edukasi' },
     { href: 'pelatihan.html', label: 'Pelatihan' },
@@ -149,18 +150,19 @@
             '</div>',
             '<div>',
               '<h3 class="site-footer-heading">Kantor Pusat &amp; Admisi</h3>',
-              '<p class="text-sm leading-relaxed mb-3">Jln. Pluit Karang Permai Blok T7 Selatan No. 40–42, Jakarta Utara, DKI Jakarta 14460</p>',
-              '<a class="site-footer-link" href="tel:+62216683545">(021) 668-3545</a>',
+              '<p class="text-sm leading-relaxed mb-3">Jln. Pluit Karang Permai Blok T7 Selatan No. 40–42, Jakarta Utara, DKI Jakarta, Indonesia</p>',
               '<a class="site-footer-link" href="https://wa.me/628111632752" target="_blank" rel="noopener noreferrer">WhatsApp 0811-1632-752 ↗</a>',
+              '<a class="site-footer-link" href="mailto:info@yayasankasihmulia.org">info@yayasankasihmulia.org</a>',
               '<a class="site-footer-link" href="https://www.google.co.id/maps/place/Yayasan+Kasih+Mulia/@-6.1218866,106.7750207,17z" target="_blank" rel="noopener noreferrer">Buka lokasi di peta ↗</a>',
             '</div>',
             '<div>',
               '<h3 class="site-footer-heading">Lokasi Layanan</h3>',
               '<p class="text-sm font-semibold mb-1">Kedhaton Parahita Primary House</p>',
               '<p class="text-sm leading-relaxed mb-3">Jln. Bali Raya No. 20–22, Sentul City, Bogor, Jawa Barat</p>',
+              '<a class="site-footer-link" href="tel:+62216683545">Telp: (021) 668-3545</a>',
               '<p class="text-sm font-semibold mb-1">Parahita Training Provider</p>',
               '<p class="text-sm leading-relaxed mb-3">Sentra Senayan 2 – Lt. 16, Jl. Asia Afrika No. 8, Jakarta Pusat</p>',
-              '<a class="site-footer-link" href="tel:+62811185667">Telp/WA Pelatihan: 0811-185-667</a>',
+              '<a class="site-footer-link" href="tel:+62811185667">Telp: 0811-185-667</a>',
             '</div>',
           '</div>',
           '<div class="site-footer-bottom mt-12 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">',
@@ -173,13 +175,29 @@
           '</div>',
         '</div>',
       '</footer>',
-      '<div class="mobile-action-bar md:hidden fixed bottom-0 inset-x-0 z-50" role="region" aria-label="Akses cepat konsultasi">',
-        '<div class="grid grid-cols-2 gap-2.5">',
-          '<a href="konsultasi.html" class="btn-teal flex items-center justify-center">Konsultasi Rahasia</a>',
-          '<a href="' + whatsappUrl + '" target="_blank" rel="noopener noreferrer" class="mobile-action-whatsapp flex items-center justify-center">WhatsApp Admisi ↗</a>',
-        '</div>',
-      '</div>'
+      '<a class="mobile-whatsapp-fab" href="https://wa.me/628111632752?text=Halo%20Yayasan%20Kasih%20Mulia%2C%20saya%20ingin%20berkonsultasi%20secara%20rahasia." target="_blank" rel="noopener noreferrer" aria-label="Konsultasi rahasia melalui WhatsApp">',
+        '<span aria-hidden="true">WA</span><span>WhatsApp</span>',
+      '</a>'
     ].join('');
+  }
+
+  function initFloatingWhatsapp() {
+    const fab = document.querySelector('.mobile-whatsapp-fab');
+    if (!fab) return;
+    function updateVisibility() {
+      if (window.innerWidth > 767) { fab.classList.add('is-obscured'); return; }
+      const f = fab.getBoundingClientRect();
+      let overlap = false;
+      document.querySelectorAll('main a[class*="btn-"], main button, #site-footer footer').forEach(function(el) {
+        if (overlap) return;
+        const r = el.getBoundingClientRect();
+        if (r.width && r.height && r.right > f.left && r.left < f.right && r.bottom > f.top && r.top < f.bottom) overlap = true;
+      });
+      fab.classList.toggle('is-obscured', overlap);
+    }
+    window.addEventListener('scroll', updateVisibility, {passive:true});
+    window.addEventListener('resize', updateVisibility);
+    updateVisibility();
   }
 
   function initAccordions() {
@@ -202,5 +220,6 @@
     renderHeader();
     renderFooter();
     initAccordions();
+    initFloatingWhatsapp();
   });
 })();

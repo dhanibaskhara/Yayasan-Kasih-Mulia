@@ -472,3 +472,21 @@ button:disabled, input:disabled, select:disabled, textarea:disabled {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Gallery lightbox */
+.gallery-item { display:block; width:100%; overflow:hidden; padding:0; border:1px solid var(--ykm-line); border-radius:16px; background:#fff; color:var(--ykm-forest-deep); text-align:left; box-shadow:var(--ykm-shadow-soft); cursor:zoom-in; }
+.gallery-item img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform .25s ease; }
+.gallery-item:hover img { transform:scale(1.025); }
+.gallery-item span { display:block; padding:.75rem .85rem; color:var(--ykm-ink); font-size:.82rem; font-weight:650; line-height:1.45; }
+.gallery-lightbox { width:min(94vw,1100px); max-width:94vw; max-height:92dvh; padding:1rem; border:1px solid rgba(255,255,255,.18); border-radius:18px; background:#102F2A; color:#fff; }
+.gallery-lightbox::backdrop { background:rgba(5,19,16,.82); }
+.gallery-lightbox img { display:block; width:100%; max-height:78dvh; object-fit:contain; border-radius:10px; background:#0B211D; }
+
+/* Mobile WhatsApp floating button; JS hides it while a CTA or footer occupies the same area. */
+.mobile-whatsapp-fab { position:fixed; z-index:70; right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); display:inline-flex; align-items:center; gap:.55rem; min-height:48px; padding:.68rem 1rem .68rem .72rem; border:1px solid rgba(255,255,255,.18); border-radius:999px; background:#176B50; color:#fff; font-size:.82rem; font-weight:800; text-decoration:none; box-shadow:0 9px 26px rgba(16,58,51,.24); transition:opacity .18s ease,transform .18s ease; }
+.mobile-whatsapp-fab>span:first-child { display:inline-grid; width:29px; height:29px; place-items:center; border-radius:50%; background:rgba(255,255,255,.18); font-size:.65rem; }
+.mobile-whatsapp-fab:hover { color:#fff; background:#105D43; transform:translateY(-1px); }
+.mobile-whatsapp-fab.is-obscured { visibility:hidden; opacity:0; pointer-events:none; }
+@media (min-width:768px) { .mobile-whatsapp-fab { display:none; } }
+@media (max-width:767px) { #site-footer footer { padding-bottom:calc(5.5rem + env(safe-area-inset-bottom)); } .gallery-lightbox { padding:.65rem; border-radius:13px; } }

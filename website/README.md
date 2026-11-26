@@ -7,6 +7,8 @@ Delapan halaman HTML yang diberikan untuk pengembangan website:
 - `program.html` — Program Rawatan
 - `keluarga.html` — Informasi untuk Keluarga
 - `edukasi.html` — Edukasi Adiksi
+- `adiksi.html` — Apa Itu Adiksi?
+- `galeri.html` — Galeri Kegiatan dengan lightbox
 - `pelatihan.html` — Pelatihan Konselor
 - `konsultasi.html` — Konsultasi Rahasia & Kontak
 - `donasi.html` — Donasi
@@ -31,3 +33,10 @@ Agar halaman dapat berjalan konsisten saat dibuka sebagai satu situs, tambahkan 
 ## Galeri Foto
 
 Halaman `galeri.html` menampilkan foto fasilitas dan dokumentasi kegiatan yang ditautkan dari media publik resmi Yayasan Kasih Mulia. Navigasi utama dan footer sudah memuat tautan ke halaman galeri.
+
+
+## Catatan pemeliharaan
+- Header, footer, navigasi, dan tombol WhatsApp mobile dirender dari `js/layout.js`.
+- Aturan redirect 301 dicatat pada `../REDIRECTS.md`; penerapan perlu dilakukan pada Cloudflare/hosting.
+- Canonical, Open Graph, dan sitemap disesuaikan dengan URL GitHub Pages saat ini.
+- Aset gambar lokal belum selesai karena server gambar lama menolak unduhan; lihat `assets/img/README.md`.
