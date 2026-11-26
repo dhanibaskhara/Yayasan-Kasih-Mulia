@@ -42,7 +42,7 @@
         '<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-x-5 gap-y-1">',
           '<span>Ruang aman untuk memulai pemulihan — tanpa penghakiman.</span>',
           '<div class="flex items-center gap-3 sm:gap-5">',
-            '<a href="tel:+62216683545">021 668-3545</a>',
+            '<a href="mailto:info@yayasankasihmulia.org">info@yayasankasihmulia.org</a>',
             '<a href="' + whatsappUrl + '" target="_blank" rel="noopener noreferrer">WhatsApp Admisi ↗</a>',
           '</div>',
         '</div>',
