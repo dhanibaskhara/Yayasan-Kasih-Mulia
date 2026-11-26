@@ -5,7 +5,7 @@
     { href: 'program.html', label: 'Program Rawatan' },
     { href: 'keluarga.html', label: 'Untuk Keluarga' },
     { href: 'pelatihan.html', label: 'Pelatihan & Edukasi' },
-    { href: 'galeri.html', label: 'Galeri Foto' },
+    { href: 'galeri.html', label: 'Galeri' },
     { href: 'edukasi.html', label: 'Pahami Adiksi' },
     { href: 'tentang.html', label: 'Tentang Kami' }
   ];
