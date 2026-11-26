@@ -1,6 +1,7 @@
 (function () {
   const pathname = window.location.pathname.replace(/\/+$/, '');
-  const currentPage = pathname.split('/').pop() || 'index.html';
+  let currentPage = pathname.split('/').pop() || 'index.html';
+  if (!currentPage.includes('.')) currentPage = 'index.html';
 
   const navItems = [
     { href: 'program.html', label: 'Rawatan' },
