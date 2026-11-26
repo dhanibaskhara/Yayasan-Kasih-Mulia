@@ -1,1 +1,113 @@
-__STYLE__
+:root {
+  --teal-primary: #0F5C5E;
+  --teal-dark: #0A3D3F;
+  --teal-soft: #EDF6F6;
+  --terracotta: #B84A24;
+  --terracotta-hover: #963A1A;
+  --terracotta-soft: #FDF2EE;
+  --canvas: #FAF9F6;
+  --surface: #FFFFFF;
+  --text-main: #1E293B;
+  --text-muted: #475569;
+  --border-subtle: #D8E2E2;
+  --success: #1B6E4B;
+  --crisis: #B42318;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--text-main);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 17px;
+  }
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.015em;
+}
+
+/* Aksesibilitas Fokus Keyboard (WCAG 2.1) */
+:focus-visible {
+  outline: 3px solid var(--terracotta);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--teal-dark);
+  color: #FFFFFF;
+  padding: 10px 16px;
+  z-index: 100;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+}
+
+/* Ruang bawah ekstra di mobile agar konten tidak tertutup Sticky Crisis Bar */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 76px;
+  }
+}
+
+/* Kartu & Slot Foto Autentik */
+.photo-slot {
+  background: linear-gradient(135deg, #E2F0F0 0%, #F4F7F5 100%);
+  border: 1px dashed #9AB7B7;
+  color: var(--teal-dark);
+}
+
+.btn-primary-cta {
+  background-color: var(--terracotta);
+  color: #FFFFFF;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary-cta:hover {
+  background-color: var(--terracotta-hover);
+}
+
+.btn-teal {
+  background-color: var(--teal-primary);
+  color: #FFFFFF;
+  transition: background-color 0.2s ease;
+}
+
+.btn-teal:hover {
+  background-color: var(--teal-dark);
+}
+
+.btn-outline-teal {
+  border: 1.5px solid var(--teal-primary);
+  color: var(--teal-primary);
+  background-color: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-outline-teal:hover {
+  background-color: var(--teal-soft);
+  color: var(--teal-dark);
+}
+
+/* Animasi transisi panel akordeon dan tab */
+.accordion-content[hidden] {
+  display: none;
+}
