@@ -5,9 +5,9 @@
 
   const navItems = [
     { href: 'index.html', label: 'Beranda' },
-    { href: 'program.html', label: 'Rawatan' },
+    { href: 'program.html', label: 'Program Rawatan' },
+    { href: 'keluarga.html', label: 'Untuk Keluarga' },
     { href: 'adiksi.html', label: 'Apa Itu Adiksi?' },
-    { href: 'keluarga.html', label: 'Keluarga' },
     { href: 'edukasi.html', label: 'Edukasi' },
     { href: 'pelatihan.html', label: 'Pelatihan' },
     { href: 'tentang.html', label: 'Tentang' },
@@ -30,12 +30,9 @@
     if (!mount) return;
 
     const desktopLinks = navItems.map(navLink).join('');
-    const mobileLinks = [
-      '<a href="index.html"' + activeAttribute('index.html') + '>Beranda</a>',
-      navItems.map(function (item) {
-        return '<a href="' + item.href + '"' + activeAttribute(item.href) + '>' + item.label + '</a>';
-      }).join('')
-    ].join('');
+    const mobileLinks = navItems.map(function (item) {
+      return '<a href="' + item.href + '"' + activeAttribute(item.href) + '>' + item.label + '</a>';
+    }).join('');
 
     mount.innerHTML = [
       '<a class="skip-link" href="#main-content">Lewati ke konten utama</a>',
