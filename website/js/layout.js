@@ -10,6 +10,7 @@
     { href: 'adiksi.html', label: 'Apa Itu Adiksi?' },
     { href: 'edukasi.html', label: 'Edukasi' },
     { href: 'pelatihan.html', label: 'Pelatihan' },
+    { href: 'lowongan.html', label: 'Lowongan' },
     { href: 'tentang.html', label: 'Tentang' },
     { href: 'galeri.html', label: 'Galeri' }
   ];
@@ -140,6 +141,7 @@
               '<a class="site-footer-link" href="keluarga.html">Dukungan Keluarga</a>',
               '<a class="site-footer-link" href="edukasi.html">Memahami Adiksi</a>',
               '<a class="site-footer-link" href="pelatihan.html">Pelatihan Konselor</a>',
+              '<a class="site-footer-link" href="lowongan.html">Lowongan Kerja</a>',
               '<a class="site-footer-link" href="galeri.html">Galeri Kegiatan</a>',
             '</div>',
             '<div>',
