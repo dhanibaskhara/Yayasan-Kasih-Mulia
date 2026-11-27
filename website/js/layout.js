@@ -53,7 +53,7 @@
             '</a>',
             '<nav class="site-nav-desktop" aria-label="Navigasi utama">' + desktopLinks + '</nav>',
             '<div class="site-header-actions">',
-              '<a href="konsultasi.html">Konsultasi Rahasia</a>',
+              '<a href="konsultasi.html">Konsultasi</a>',
             '</div>',
             '<button id="mobile-menu-btn" class="site-mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Buka menu navigasi">',
               '<svg id="menu-icon" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
@@ -63,7 +63,7 @@
         '<div id="mobile-menu" hidden>',
           '<nav class="max-w-7xl mx-auto" aria-label="Navigasi mobile">' + mobileLinks + '</nav>',
           '<div class="mobile-menu-actions max-w-7xl mx-auto">',
-            '<a href="konsultasi.html" class="btn-teal">Konsultasi Rahasia</a>',
+            '<a href="konsultasi.html" class="btn-teal">Konsultasi</a>',
             '<a href="donasi.html" class="btn-primary-cta">Donasi</a>',
           '</div>',
         '</div>',
@@ -169,7 +169,7 @@
           '</div>',
         '</div>',
       '</footer>',
-      '<a class="mobile-whatsapp-fab" href="https://wa.me/628111632752?text=Halo%20Yayasan%20Kasih%20Mulia%2C%20saya%20ingin%20berkonsultasi%20secara%20rahasia." target="_blank" rel="noopener noreferrer" aria-label="Konsultasi rahasia melalui WhatsApp">',
+      '<a class="mobile-whatsapp-fab" href="https://wa.me/628111632752?text=Halo%20Yayasan%20Kasih%20Mulia%2C%20saya%20ingin%20berkonsultasi%20secara%20rahasia." target="_blank" rel="noopener noreferrer" aria-label="Konsultasi melalui WhatsApp">',
         '<span aria-hidden="true">WA</span><span>WhatsApp</span>',
       '</a>'
     ].join('');
@@ -194,6 +194,78 @@
     updateVisibility();
   }
 
+  function initImageLightbox() {
+    const main = document.querySelector('main');
+    if (!main) return;
+
+    const dialog = document.createElement('dialog');
+    dialog.id = 'site-image-lightbox';
+    dialog.className = 'site-image-lightbox';
+    dialog.setAttribute('aria-label', 'Pratinjau foto');
+    dialog.innerHTML = [
+      '<div class="lightbox-toolbar"><button type="button" data-lightbox-close>Tutup</button></div>',
+      '<img src="" alt="" />',
+      '<p data-lightbox-caption hidden></p>'
+    ].join('');
+    document.body.appendChild(dialog);
+
+    const preview = dialog.querySelector('img');
+    const caption = dialog.querySelector('[data-lightbox-caption]');
+    const closeButton = dialog.querySelector('[data-lightbox-close]');
+
+    main.querySelectorAll('img').forEach(function (image) {
+      image.classList.add('lightbox-image');
+      if (!image.closest('a, button')) {
+        image.tabIndex = 0;
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-label', image.alt ? 'Perbesar foto: ' + image.alt : 'Perbesar foto');
+      }
+    });
+
+    function openLightbox(trigger) {
+      const image = trigger.matches('img') ? trigger : trigger.querySelector('img');
+      if (!image) return;
+      const source = trigger.getAttribute('data-lightbox-src') ||
+        image.getAttribute('data-lightbox-src') || image.currentSrc || image.src;
+      if (!source) return;
+
+      const alt = trigger.getAttribute('data-lightbox-alt') || image.alt || '';
+      preview.src = source;
+      preview.alt = alt;
+      caption.textContent = alt;
+      caption.hidden = !alt;
+      if (!dialog.open) dialog.showModal();
+    }
+
+    document.addEventListener('click', function (event) {
+      const trigger = event.target.closest('[data-lightbox-src]') ||
+        event.target.closest('main img.lightbox-image');
+      if (!trigger || trigger.closest('#site-image-lightbox')) return;
+      if (trigger.matches('img') && trigger.closest('a')) event.preventDefault();
+      openLightbox(trigger);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      const image = event.target.closest('main img.lightbox-image');
+      if (!image || image.closest('a, button')) return;
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(image);
+      }
+    });
+
+    closeButton.addEventListener('click', function () { dialog.close(); });
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', function () {
+      preview.removeAttribute('src');
+      preview.alt = '';
+      caption.textContent = '';
+      caption.hidden = true;
+    });
+  }
+
   function initAccordions() {
     document.querySelectorAll('[data-accordion-trigger]').forEach(function (button) {
       button.addEventListener('click', function () {
@@ -214,6 +286,7 @@
     renderHeader();
     renderFooter();
     initAccordions();
+    initImageLightbox();
     initFloatingWhatsapp();
   });
 })();

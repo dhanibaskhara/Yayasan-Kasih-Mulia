@@ -92,7 +92,7 @@ main section h3 { line-height: 1.3; letter-spacing: -.025em; }
   -webkit-backdrop-filter: blur(14px);
 }
 #site-header .site-header-inner {
-  min-height: 78px;
+  min-height: 88px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -383,7 +383,25 @@ button:disabled, input:disabled, select:disabled, textarea:disabled {
   cursor: not-allowed;
 }
 .accordion-content[hidden] { display: none !important; }
-[data-accordion-trigger] { min-height: 48px; cursor: pointer; }
+[data-accordion-trigger] {
+  min-height: 62px;
+  gap: 1rem;
+  cursor: pointer;
+}
+[data-accordion-icon] {
+  display: inline-flex;
+  flex: 0 0 2.4rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--ykm-green-soft);
+  color: var(--ykm-forest-deep);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: transform .2s ease, background .2s ease;
+}
 
 /* Footer and persistent mobile actions */
 #site-footer footer {
@@ -450,7 +468,7 @@ button:disabled, input:disabled, select:disabled, textarea:disabled {
   #site-header .site-topbar { font-size: .68rem; }
   #site-header .site-topbar > div { justify-content: center; }
   #site-header .site-topbar > div > span { display: none; }
-  #site-header .site-header-inner { min-height: 68px; }
+  #site-header .site-header-inner { min-height: 76px; }
   #site-header .site-brand-mark { width: 39px; height: 39px; flex-basis: 39px; border-radius: 11px; }
   #site-header .site-brand-name { font-size: .86rem; }
   #site-header .site-brand-sub { font-size: .61rem; }
@@ -479,9 +497,43 @@ button:disabled, input:disabled, select:disabled, textarea:disabled {
 .gallery-item img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform .25s ease; }
 .gallery-item:hover img { transform:scale(1.025); }
 .gallery-item span { display:block; padding:.75rem .85rem; color:var(--ykm-ink); font-size:.82rem; font-weight:650; line-height:1.45; }
-.gallery-lightbox { width:min(94vw,1100px); max-width:94vw; max-height:92dvh; padding:1rem; border:1px solid rgba(255,255,255,.18); border-radius:18px; background:#102F2A; color:#fff; }
-.gallery-lightbox::backdrop { background:rgba(5,19,16,.82); }
-.gallery-lightbox img { display:block; width:100%; max-height:78dvh; object-fit:contain; border-radius:10px; background:#0B211D; }
+.lightbox-image { cursor: zoom-in; }
+.site-image-lightbox {
+  width: min(94vw, 1100px);
+  max-width: 94vw;
+  max-height: 92dvh;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 18px;
+  background: #102F2A;
+  color: #fff;
+}
+.site-image-lightbox::backdrop { background: rgba(5,19,16,.82); }
+.site-image-lightbox .lightbox-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: .75rem;
+}
+.site-image-lightbox button {
+  min-height: 40px;
+  padding: .5rem 1rem;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 9px;
+  background: #277264;
+  color: #fff;
+  font-size: .85rem;
+  font-weight: 700;
+}
+.site-image-lightbox img {
+  display: block;
+  width: 100%;
+  max-height: 78dvh;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #0B211D;
+}
+.site-image-lightbox p { margin-top: .7rem; color: #fff; font-size: .85rem; }
 
 /* Mobile WhatsApp floating button; JS hides it while a CTA or footer occupies the same area. */
 .mobile-whatsapp-fab { position:fixed; z-index:70; right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); display:inline-flex; align-items:center; gap:.55rem; min-height:48px; padding:.68rem 1rem .68rem .72rem; border:1px solid rgba(255,255,255,.18); border-radius:999px; background:#176B50; color:#fff; font-size:.82rem; font-weight:800; text-decoration:none; box-shadow:0 9px 26px rgba(16,58,51,.24); transition:opacity .18s ease,transform .18s ease; }
@@ -493,9 +545,9 @@ button:disabled, input:disabled, select:disabled, textarea:disabled {
 
 
 /* Official Yayasan Kasih Mulia logo */
-#site-header .site-brand-logo { display:block; width: clamp(128px, 13vw, 180px); height: auto; max-height: 54px; object-fit: contain; object-position: left center; }
+#site-header .site-brand-logo { display:block; width: clamp(160px, 15vw, 210px); height: auto; max-height: 68px; object-fit: contain; object-position: left center; }
 #site-footer .site-footer-logo { display:block; width:176px; height:auto; max-height:62px; object-fit:contain; object-position:left center; padding:.2rem; border-radius:8px; background:#fff; }
-@media (max-width:767px) { #site-header .site-brand-logo { width:126px; max-height:46px; } }
+@media (max-width:767px) { #site-header .site-header-inner { min-height:76px; } #site-header .site-brand-logo { width:150px; max-height:54px; } }
 
 
 /* Restrained line icons for service and program cards */

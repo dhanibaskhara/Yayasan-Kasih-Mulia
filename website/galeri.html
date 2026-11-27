@@ -57,29 +57,8 @@
         </button>
       </div>
     </section>
-    <dialog id="gallery-lightbox" class="gallery-lightbox">
-      <div class="flex justify-end mb-3"><button type="button" id="gallery-lightbox-close" class="btn-teal px-4 py-2">Tutup</button></div>
-      <img id="gallery-lightbox-image" src="" alt="" loading="lazy" />
-      <p id="gallery-lightbox-caption" class="text-sm text-white mt-3"></p>
-    </dialog>
   </main>
   <div id="site-footer"></div>
   <script src="js/layout.js"></script>
-  <script>
-    (function () {
-      var dialog=document.getElementById('gallery-lightbox'), image=document.getElementById('gallery-lightbox-image');
-      var caption=document.getElementById('gallery-lightbox-caption'), close=document.getElementById('gallery-lightbox-close');
-      if(!dialog||!image||!close)return;
-      document.querySelectorAll('[data-lightbox-src]').forEach(function(item){
-        item.addEventListener('click',function(){
-          var src=item.getAttribute('data-lightbox-src'), alt=item.getAttribute('data-lightbox-alt')||'';
-          image.src=src; image.alt=alt; caption.textContent=alt; dialog.showModal();
-        });
-      });
-      close.addEventListener('click',function(){dialog.close();});
-      dialog.addEventListener('click',function(event){if(event.target===dialog)dialog.close();});
-      dialog.addEventListener('close',function(){image.removeAttribute('src');});
-    })();
-  </script>
 </body>
 </html>
